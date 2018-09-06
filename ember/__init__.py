@@ -85,6 +85,7 @@ def read_vectorized_features(data_dir, subset=None):
         return None
 
     ndim = PEFeatureExtractor.dim
+    print('ndim %s' % ndim)
     X_train = None
     y_train = None
     X_test = None
