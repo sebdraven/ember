@@ -453,9 +453,10 @@ class PEFeatureExtractor(object):
         except Exception:  # everything else (KeyboardInterrupt, SystemExit, ValueError):
             raise
 
-        features = {"sha256": hashlib.sha256(bytez).hexdigest()}
-        features.update({fe.name: fe.raw_features(bytez, lief_binary) for fe in self.features})
-        return features
+        if lief_binary:
+            features = {"sha256": hashlib.sha256(bytez).hexdigest()}
+            features.update({fe.name: fe.raw_features(bytez, lief_binary) for fe in self.features})
+            return features
 
     def process_raw_features(self, raw_obj):
         feature_vectors = [fe.process_raw_features(raw_obj[fe.name]) for fe in self.features]
