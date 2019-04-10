@@ -167,9 +167,9 @@ def predict_sample(lgbm_model, file_data):
     """
     extractor = PEFeatureExtractor()
     obj = extractor.feature_vector(file_data)
+    if type(obj) !=int:
+        features = np.array(obj, dtype=np.float32)
 
-    features = np.array(obj, dtype=np.float32)
-    if type(features) != int:
         return lgbm_model.predict([features])[0]
     else:
         return 'N/A'
