@@ -466,3 +466,5 @@ class PEFeatureExtractor(object):
         obj = self.raw_features(bytez)
         if obj:
             return self.process_raw_features(obj)
+        else:
+            return 0

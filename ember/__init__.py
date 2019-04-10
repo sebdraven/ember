@@ -169,7 +169,7 @@ def predict_sample(lgbm_model, file_data):
     obj = extractor.feature_vector(file_data)
 
     features = np.array(obj, dtype=np.float32)
-    if not np.isnan(features):
+    if type(features) != int:
         return lgbm_model.predict([features])[0]
     else:
         return 'N/A'
