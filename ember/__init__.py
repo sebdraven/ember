@@ -166,8 +166,10 @@ def predict_sample(lgbm_model, file_data):
     Predict a PE file with an LightGBM model
     """
     extractor = PEFeatureExtractor()
-    features = np.array(extractor.feature_vector(file_data), dtype=np.float32)
-    if features:
+    obj = extractor.feature_vector(file_data)
+
+    features = np.array(obj, dtype=np.float32)
+    if not np.isnan(features):
         return lgbm_model.predict([features])[0]
     else:
         return 'N/A'
