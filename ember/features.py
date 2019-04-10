@@ -465,4 +465,4 @@ class PEFeatureExtractor(object):
     def feature_vector(self, bytez):
         obj = self.raw_features(bytez)
         if obj:
-            return self.process_raw_features()
+            return self.process_raw_features(obj)
